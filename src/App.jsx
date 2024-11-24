@@ -1,7 +1,7 @@
-import ConfigProvider from "./configs/theme/ConfigProvider"
 import { Layout, Flex } from "antd"
 import Header from "@/components/Header"
 import TabComponent from "./components/TabComponent"
+import ThemeConfigProvider from "./providers/ThemeConfigProvider"
 
 const { Content } = Layout
 
@@ -20,7 +20,7 @@ const layoutStyle = {
 
 function App() {
   return (
-    <ConfigProvider>
+    <ThemeConfigProvider>
       <Flex gap="middle" wrap>
         <Layout style={layoutStyle}>
           <Header />
@@ -29,7 +29,7 @@ function App() {
           </Content>
         </Layout>
       </Flex>
-    </ConfigProvider>
+    </ThemeConfigProvider>
   )
 }
 
