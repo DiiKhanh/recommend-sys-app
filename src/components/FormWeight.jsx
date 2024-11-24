@@ -1,4 +1,4 @@
-import { Alert, Button, Flex, Form, Input, InputNumber, notification, QRCode, Space, Tag, Tooltip } from 'antd'
+import { Alert, Button, Flex, Form, Input, InputNumber, Modal, notification, QRCode, Space, Tag, Tooltip } from 'antd'
 import {
   FacebookOutlined,
   LinkedinOutlined,
@@ -8,6 +8,8 @@ import {
 import FoodStoreItem from './common/FoodStoreItem'
 import { usePostRecommendWeight } from '@/apis/manage-weight/manage-weight.query'
 import Marquee from 'react-fast-marquee'
+import { useState } from 'react'
+import TableComponent from './common/TableComponent'
 
 const formItemLayout = {
   labelCol: {
@@ -21,7 +23,8 @@ const formItemLayout = {
   size: 'large'
 }
 
-const FormWeight = ({ topicId }) => {
+const FormWeight = ({ topicId, ref3 }) => {
+  const [ open, setOpen ] = useState(false)
   const [ form ] = Form.useForm()
   const { mutate, isPending, data } = usePostRecommendWeight()
 
@@ -37,6 +40,8 @@ const FormWeight = ({ topicId }) => {
     }
     mutate(data)
   }
+
+  console.log(data)
 
   return (
     <Flex vertical>
@@ -84,7 +89,7 @@ const FormWeight = ({ topicId }) => {
         </Form.Item>
 
         <Form.Item label={null}>
-          <Space>
+          <Space ref={ref3}>
             <Button type="primary" htmlType="submit" loading={isPending}>
             Submit
             </Button>
@@ -94,8 +99,11 @@ const FormWeight = ({ topicId }) => {
           </Space>
         </Form.Item>
       </Form>
+      {
+        !data && <Button type='primary' className='w-96 mx-auto' onClick={() => setOpen(true)}>View result</Button>
+      }
 
-      { data && <div className='flex mx-auto mt-10 flex-col items-center gap-4'>
+      {data && <div className='flex mx-auto mt-10 flex-col items-center gap-4'>
         <Alert
           type='success'
           banner
@@ -137,6 +145,16 @@ const FormWeight = ({ topicId }) => {
           </Tag>
         </Flex>
       </div>}
+      <Modal
+        title="Result"
+        centered
+        open={open}
+        onOk={() => setOpen(false)}
+        cancelButtonProps={{ style: { display: 'none' } }}
+        width="100%"
+      >
+        <TableComponent />
+      </Modal>
     </Flex>
   )
 }
