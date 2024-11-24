@@ -1,5 +1,6 @@
 import { Button, Form, InputNumber, Space } from 'antd'
 import FoodStoreItem from './common/FoodStoreItem'
+import { usePostRecommendWeight } from '@/apis/manage-weight/manage-weight.query'
 
 const formItemLayout = {
   labelCol: {
@@ -15,9 +16,19 @@ const formItemLayout = {
 
 const FormWeight = () => {
   const [ form ] = Form.useForm()
+  const { mutate, isPending } = usePostRecommendWeight()
 
   const onFinish = (values) => {
-    console.log(values)
+    const data = {
+      topic_id11: 1,
+      restaurants1s: [],
+      form_data: {
+        calories: 500,
+        total_carb: 50,
+        sugar: 10
+      }
+    }
+    mutate(data)
   }
 
   return (
@@ -37,7 +48,6 @@ const FormWeight = () => {
         <InputNumber className="w-full" />
       </Form.Item>
 
-      {/* Select Food Store */}
       <Form.Item
         name={[ 'user', 'foodStores' ]}
         label="Food store"
@@ -48,10 +58,10 @@ const FormWeight = () => {
 
       <Form.Item label={null}>
         <Space>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={isPending}>
             Submit
           </Button>
-          <Button danger onClick={() => form.resetFields()}>
+          <Button danger onClick={() => form.resetFields()} disabled={isPending}>
             Reset
           </Button>
         </Space>

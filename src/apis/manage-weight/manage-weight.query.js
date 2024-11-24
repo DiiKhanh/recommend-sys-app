@@ -4,14 +4,20 @@ import manageWeightApi from './manage-weight.api'
 import { notification } from 'antd'
 
 
-export const useAddTodoMutation = () => {
+export const usePostRecommendWeight = () => {
   return useMutation({
     mutationFn: manageWeightApi.postRecommend,
     onSuccess: () => {
-      notification.success('success')
+      notification.success({
+        message: 'Success',
+        description: 'Your data was submitted successfully.'
+      })
     },
-    onError: () => {
-      notification.error('failed')
+    onError: (error) => {
+      notification.error({
+        message: 'Error',
+        description: error?.message || 'An error occurred while processing your request.'
+      })
     }
   })
 }
