@@ -6,7 +6,7 @@ const items = [
   {
     key: 1,
     label: 'Quản lý cân nặng',
-    children: <FormWeight />,
+    children: <FormWeight topicId={1} />,
     icon: <FormOutlined />
   },
   {
