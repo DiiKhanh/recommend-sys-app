@@ -2,6 +2,7 @@ import { Layout, Flex } from "antd"
 import Header from "@/components/Header"
 import TabComponent from "./components/TabComponent"
 import ThemeConfigProvider from "./providers/ThemeConfigProvider"
+import QueryConfigProvider from "./providers/QueryConfigProvider"
 
 const { Content } = Layout
 
@@ -21,14 +22,16 @@ const layoutStyle = {
 function App() {
   return (
     <ThemeConfigProvider>
-      <Flex gap="middle" wrap>
-        <Layout style={layoutStyle}>
-          <Header />
-          <Content style={contentStyle}>
-            <TabComponent />
-          </Content>
-        </Layout>
-      </Flex>
+      <QueryConfigProvider>
+        <Flex gap="middle" wrap>
+          <Layout style={layoutStyle}>
+            <Header />
+            <Content style={contentStyle}>
+              <TabComponent />
+            </Content>
+          </Layout>
+        </Flex>
+      </QueryConfigProvider>
     </ThemeConfigProvider>
   )
 }
