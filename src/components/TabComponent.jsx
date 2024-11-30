@@ -45,18 +45,18 @@ function TabComponent() {
 
   const steps = [
     {
-      title: 'Choose',
-      description: 'Select your type',
+      title: 'Chủ đề',
+      description: 'Lựa chọn chủ đề',
       target: () => ref1.current
     },
     {
-      title: 'Input',
-      description: 'Field your information',
+      title: 'Dữ liệu',
+      description: 'Nhập dữ liệu của bạn',
       target: () => ref2.current
     },
     {
-      title: 'Submit',
-      description: 'Click to view result or reset',
+      title: 'Xác nhận',
+      description: 'Bấm để xem kết quả hoặc đặt lại dữ liệu',
       target: () => ref3.current
     }
   ]

@@ -18,7 +18,7 @@ function FoodStoreItem({ value = [], onChange }) {
       value={value}
       onChange={handleChange}
       maxTagCount={3}
-      placeholder="Select (max 3)"
+      placeholder="Chọn tối đa 3 cửa hàng"
       allowClear
     >
       {FOOD_STORE.map((store) => (

@@ -41,8 +41,6 @@ const FormWeight = ({ topicId, ref3 }) => {
     mutate(data)
   }
 
-  console.log(data)
-
   return (
     <Flex vertical>
       <Form
@@ -53,36 +51,42 @@ const FormWeight = ({ topicId, ref3 }) => {
         form={form}
         disabled={isPending}
       >
-        <Form.Item
-          name={[ 'user', 'calories' ]}
-          label="Calories"
-          rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Calories must be between 0 and 10,000' } ]}
-          hasFeedback
-        >
-          <InputNumber className="w-full" />
-        </Form.Item>
+        <Tooltip title='Lượng calo nên từ 250 đến 810'>
+          <Form.Item
+            name={[ 'user', 'calories' ]}
+            label="Số liệu về lượng calo"
+            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng calo phải phù hợp' } ]}
+            hasFeedback
+          >
+            <InputNumber className="w-full" />
+          </Form.Item>
+        </Tooltip>
 
-        <Form.Item
-          name={[ 'user', 'sugar' ]}
-          label="Sugar"
-          rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'sugar must be between 0 and 10,000' } ]}
-          hasFeedback
-        >
-          <InputNumber className="w-full" />
-        </Form.Item>
+        <Tooltip title='Lượng đường nên từ 1 đến 14'>
+          <Form.Item
+            name={[ 'user', 'sugar' ]}
+            label="Số liệu về lượng đường"
+            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng đường phải phù hợp' } ]}
+            hasFeedback
+          >
+            <InputNumber className="w-full" />
+          </Form.Item>
+        </Tooltip>
 
-        <Form.Item
-          name={[ 'user', 'total_carb' ]}
-          label="Total carb"
-          rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Total carb must be between 0 and 10,000' } ]}
-          hasFeedback
-        >
-          <InputNumber className="w-full" />
-        </Form.Item>
+        <Tooltip title='Lượng carb nên từ 20 đến 70'>
+          <Form.Item
+            name={[ 'user', 'total_carb' ]}
+            label="Số liệu về lượng carb"
+            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng carb phải phù hợp' } ]}
+            hasFeedback
+          >
+            <InputNumber className="w-full" />
+          </Form.Item>
+        </Tooltip>
 
         <Form.Item
           name={[ 'user', 'foodStores' ]}
-          label="Food store"
+          label="Cửa hàng"
           hasFeedback
         >
           <FoodStoreItem />
@@ -91,16 +95,16 @@ const FormWeight = ({ topicId, ref3 }) => {
         <Form.Item label={null}>
           <Space ref={ref3}>
             <Button type="primary" htmlType="submit" loading={isPending}>
-            Submit
+            Xác nhận
             </Button>
             <Button danger onClick={() => form.resetFields()}>
-            Reset
+            Đặt lại
             </Button>
           </Space>
         </Form.Item>
       </Form>
       {
-        !data && <Button type='primary' className='w-96 mx-auto' onClick={() => setOpen(true)}>View result</Button>
+        data && <Button type='primary' className='w-96 mx-auto' onClick={() => setOpen(true)}>Xem kết quả</Button>
       }
 
       {data && <div className='flex mx-auto mt-10 flex-col items-center gap-4'>
@@ -109,7 +113,7 @@ const FormWeight = ({ topicId, ref3 }) => {
           banner
           message={
             <Marquee pauseOnHover gradient={false}>
-            Scan QR to learn Health instructions for using fast food
+            Quét mã QR để xem hướng dẫn về đồ ăn nhanh
             </Marquee>
           }
         />
@@ -117,43 +121,49 @@ const FormWeight = ({ topicId, ref3 }) => {
         <Input
           className='max-w-[500px]'
           value='https://www.landofrost.com/six-simple-rules-to-follow-for-eating-nutritiously-at-fast-food-restaurants/'
-          addonAfter={<Tooltip title='Click to copy clipboard'>
+          addonAfter={<Tooltip title='Bấm để sao chép'>
             <CopyOutlined className='cursor-pointer' onClick={() => {
               navigator.clipboard.writeText('https://www.landofrost.com/six-simple-rules-to-follow-for-eating-nutritiously-at-fast-food-restaurants/')
                 .then(() => {
                   notification.success({
-                    description: 'Copied to clipboard!'
+                    description: 'Đã sao chép!'
                   })
                 })
                 .catch(() => {
                   notification.error({
-                    description: 'Failed to copy!'
+                    description: 'Có lỗi khi sao chép!'
                   })
                 })
             }}/>
           </Tooltip>}
         />
         <Flex gap="4px 0" wrap>
-          <Tag icon={<YoutubeOutlined />} color="#cd201f">
-            Youtube
-          </Tag>
-          <Tag icon={<FacebookOutlined />} color="#3b5999">
-            Facebook
-          </Tag>
-          <Tag icon={<LinkedinOutlined />} color="#55acee">
-            LinkedIn
-          </Tag>
+          <a href="https://www.youtube.com/@DiiKhanh" target="_blank" rel="noopener noreferrer">
+            <Tag icon={<YoutubeOutlined />} color="#cd201f" className='cursor-pointer text-xl'>
+          Youtube
+            </Tag>
+          </a>
+          <a href="https://www.facebook.com/dikhanhnek/" target="_blank" rel="noopener noreferrer">
+            <Tag icon={<FacebookOutlined />} color="#3b5999" className='cursor-pointer text-xl'>
+          Facebook
+            </Tag>
+          </a>
+          <a href="https://www.linkedin.com/in/ph%E1%BA%A1m-duy-kh%C3%A1nh-740465233/" target="_blank" rel="noopener noreferrer" style={{ all: 'unset', display: 'inline-block' }}>
+            <Tag icon={<LinkedinOutlined />} color="#55acee" className='cursor-pointer text-xl'>
+          LinkedIn
+            </Tag>
+          </a>
         </Flex>
       </div>}
       <Modal
-        title="Result"
+        title="Kết quả"
         centered
         open={open}
         onOk={() => setOpen(false)}
         cancelButtonProps={{ style: { display: 'none' } }}
         width="100%"
       >
-        <TableComponent />
+        <TableComponent data={data?.recommendations}/>
       </Modal>
     </Flex>
   )

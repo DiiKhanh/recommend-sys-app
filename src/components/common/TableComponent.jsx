@@ -1,63 +1,86 @@
-import { Pagination, Table, Tag } from 'antd'
+import { FOOD_STORE, SAMPLE_DATA } from "@/constants/data"
+import { Progress, Table, Tag } from 'antd'
 
-const { Column, ColumnGroup } = Table
-
-const data = [
+const columns = [
   {
-    key: '1',
-    firstName: 'John',
-    lastName: 'Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: [ 'nice', 'developer' ]
+    title: "Tên đồ ăn",
+    dataIndex: "item",
+    key: "item",
+    sorter: (a, b) => a.item.localeCompare(b.item)
   },
   {
-    key: '2',
-    firstName: 'Jim',
-    lastName: 'Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: [ 'loser' ]
+    title: "Số điểm",
+    dataIndex: "match_score",
+    key: "match_score",
+    render: (value) => <Progress size={100} type="circle" percent={value.toFixed(2)} />,
+    sorter: (a, b) => a.match_score - b.match_score
   },
   {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: [ 'cool', 'teacher' ]
+    title: "Thông tin dinh dưỡng",
+    children: [
+      {
+        title: "Calories",
+        dataIndex: [ "nutritional_info", "calories" ],
+        key: "calories"
+      },
+      {
+        title: "Cholesterol",
+        dataIndex: [ "nutritional_info", "cholesterol" ],
+        key: "cholesterol"
+      },
+      {
+        title: "Protein",
+        dataIndex: [ "nutritional_info", "protein" ],
+        key: "protein"
+      },
+      {
+        title: "Saturated Fat",
+        dataIndex: [ "nutritional_info", "sat_fat" ],
+        key: "sat_fat"
+      },
+      {
+        title: "Sodium",
+        dataIndex: [ "nutritional_info", "sodium" ],
+        key: "sodium"
+      },
+      {
+        title: "Sugar",
+        dataIndex: [ "nutritional_info", "sugar" ],
+        key: "sugar"
+      },
+      {
+        title: "Total Carb",
+        dataIndex: [ "nutritional_info", "total_carb" ],
+        key: "total_carb"
+      },
+      {
+        title: "Total Fat",
+        dataIndex: [ "nutritional_info", "total_fat" ],
+        key: "total_fat"
+      },
+      {
+        title: "Trans Fat",
+        dataIndex: [ "nutritional_info", "trans_fat" ],
+        key: "trans_fat"
+      }
+    ]
+  },
+  {
+    title: "Cửa hàng",
+    dataIndex: "restaurant",
+    key: "restaurant",
+    sorter: (a, b) => a.restaurant.localeCompare(b.restaurant),
+    filters: FOOD_STORE.map(i => ({ text: i.name, value: i.name })),
+    onFilter: (value, record) => record.restaurant === value,
+    render: (value) => <Tag color="gold">{value}</Tag>
   }
 ]
 
-const TableComponent= () => (
-  <Table dataSource={data} pagination={() => <Pagination total={2} />}>
-    <ColumnGroup title="Name">
-      <Column title="First Name" dataIndex="firstName" key="firstName" />
-      <Column title="Last Name" dataIndex="lastName" key="lastName" />
-    </ColumnGroup>
-    <Column title="Age" dataIndex="age" key="age" />
-    <Column title="Address" dataIndex="address" key="address" />
-    <Column
-      title="Tags"
-      dataIndex="tags"
-      key="tags"
-      render={(tags) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green'
-            if (tag === 'loser') {
-              color = 'volcano'
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            )
-          })}
-        </>
-      )}
-    />
-  </Table>
-)
+const TableComponent= ({ data }) => {
+  const dataSource = data || SAMPLE_DATA
+  return (
+    <Table dataSource={dataSource} pagination={false} columns={columns} bordered/>
+  )
+}
 
 export default TableComponent
