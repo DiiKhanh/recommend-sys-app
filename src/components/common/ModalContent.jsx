@@ -12,7 +12,7 @@ const ModalContent = ({ data, open, setOpen }) => {
       width="100%"
       onCancel={() => setOpen(false)}
     >
-      <TableComponent data={data?.recommendations}/>
+      <TableComponent data={data?.recommendations} />
     </Modal>
   )
 }

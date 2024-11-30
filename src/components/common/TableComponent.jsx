@@ -1,10 +1,9 @@
 import { FOOD_STORE, SAMPLE_DATA } from "@/constants/data"
-import { Button, Modal, Progress, Space, Table, Tag } from 'antd'
-import { useState } from "react"
+import { Progress, Table, Tag } from 'antd'
 
 const TableComponent= ({ data }) => {
-  const [ open, setOpen ] = useState(false)
   const dataSource = data || SAMPLE_DATA
+
   const columns = [
     {
       title: "Tên đồ ăn",
@@ -77,30 +76,6 @@ const TableComponent= ({ data }) => {
           key: "trans_fat"
         }
       ]
-    },
-    {
-      title: '',
-      key: 'action',
-      render: (_, record) => {
-        return (
-          <>
-            <Space size="middle">
-              <Button onClick={() => setOpen(true)}>Xem chi tiết</Button>
-            </Space>
-            <Modal
-              title="Thông tin chi tiết"
-              centered
-              open={open}
-              onOk={() => setOpen(false)}
-              onCancel={() => setOpen(false)}
-              cancelButtonProps={{ style: { display: 'none' } }}
-              width="100%"
-            >
-              <div>123</div>
-            </Modal>
-          </>
-        )
-      }
     }
   ]
   return (

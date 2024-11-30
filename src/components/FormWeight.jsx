@@ -156,7 +156,7 @@ const FormWeight = ({ topicId, ref3 }) => {
           </div>
         </>
       }
-      <ModalContent open={open} setOpen={setOpen} data={data}/>
+      <ModalContent open={open} setOpen={setOpen} data={data} />
     </Flex>
   )
 }

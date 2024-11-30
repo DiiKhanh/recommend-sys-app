@@ -20,3 +20,21 @@ export const usePostRecommendWeight = () => {
     }
   })
 }
+
+export const usePostRecommendText = () => {
+  return useMutation({
+    mutationFn: manageWeightApi.postRecommendText,
+    onSuccess: (data) => {
+      notification.success({
+        message: 'Success',
+        description: data?.message ?? 'Your data was submitted successfully.'
+      })
+    },
+    onError: (error) => {
+      notification.error({
+        message: 'Error',
+        description: error?.message ?? 'Something error when recommend'
+      })
+    }
+  })
+}
