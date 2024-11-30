@@ -1,4 +1,4 @@
-import { Alert, Button, Flex, Form, Input, InputNumber, Modal, notification, QRCode, Space, Tag, Tooltip } from 'antd'
+import { Alert, Button, Flex, Form, Input, InputNumber, notification, QRCode, Space, Tag, Tooltip } from 'antd'
 import {
   FacebookOutlined,
   LinkedinOutlined,
@@ -9,7 +9,7 @@ import FoodStoreItem from './common/FoodStoreItem'
 import { usePostRecommendWeight } from '@/apis/manage-weight/manage-weight.query'
 import Marquee from 'react-fast-marquee'
 import { useState } from 'react'
-import TableComponent from './common/TableComponent'
+import ModalContent from './common/ModalContent'
 
 const formItemLayout = {
   labelCol: {
@@ -168,16 +168,7 @@ const FormHeart = ({ topicId }) => {
           </div>
         </>
       }
-      <Modal
-        title="Kết quả"
-        centered
-        open={open}
-        onOk={() => setOpen(false)}
-        cancelButtonProps={{ style: { display: 'none' } }}
-        width="100%"
-      >
-        <TableComponent data={data?.recommendations}/>
-      </Modal>
+      <ModalContent open={open} setOpen={setOpen} data={data}/>
     </Flex>
   )
 }
