@@ -9,10 +9,19 @@ const columns = [
     sorter: (a, b) => a.item.localeCompare(b.item)
   },
   {
+    title: "Cửa hàng",
+    dataIndex: "restaurant",
+    key: "restaurant",
+    sorter: (a, b) => a.restaurant.localeCompare(b.restaurant),
+    filters: FOOD_STORE.map(i => ({ text: i.name, value: i.name })),
+    onFilter: (value, record) => record.restaurant === value,
+    render: (value) => <Tag color="gold">{value}</Tag>
+  },
+  {
     title: "Số điểm",
     dataIndex: "match_score",
     key: "match_score",
-    render: (value) => <Progress size={100} type="circle" percent={value.toFixed(2)} />,
+    render: (value) => <Progress size={80} type="circle" percent={value.toFixed(2)} />,
     sorter: (a, b) => a.match_score - b.match_score
   },
   {
@@ -64,22 +73,13 @@ const columns = [
         key: "trans_fat"
       }
     ]
-  },
-  {
-    title: "Cửa hàng",
-    dataIndex: "restaurant",
-    key: "restaurant",
-    sorter: (a, b) => a.restaurant.localeCompare(b.restaurant),
-    filters: FOOD_STORE.map(i => ({ text: i.name, value: i.name })),
-    onFilter: (value, record) => record.restaurant === value,
-    render: (value) => <Tag color="gold">{value}</Tag>
   }
 ]
 
 const TableComponent= ({ data }) => {
   const dataSource = data || SAMPLE_DATA
   return (
-    <Table dataSource={dataSource} pagination={false} columns={columns} bordered/>
+    <Table dataSource={dataSource} columns={columns} bordered pagination={dataSource.length > 5 ? { pageSize: 5 } : false}/>
   )
 }
 

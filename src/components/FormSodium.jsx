@@ -23,7 +23,7 @@ const formItemLayout = {
   size: 'large'
 }
 
-const FormWeight = ({ topicId, ref3 }) => {
+const FormSodium = ({ topicId }) => {
   const [ open, setOpen ] = useState(false)
   const [ form ] = Form.useForm()
   const { mutate, isPending, data } = usePostRecommendWeight()
@@ -33,9 +33,9 @@ const FormWeight = ({ topicId, ref3 }) => {
       topic_id: topicId,
       restaurants: values.user.foodStores ?? [],
       form_data: {
-        calories: values.user.calories,
-        total_carb: values.user.total_carb,
-        sugar: values.user.sugar
+        sodium: values.user.sodium,
+        cholesterol: values.user.cholesterol,
+        total_fat: values.user.total_fat
       }
     }
     mutate(data)
@@ -45,39 +45,39 @@ const FormWeight = ({ topicId, ref3 }) => {
     <Flex vertical>
       <Form
         {...formItemLayout}
-        style={{ maxWidth: 800, width: '100%' }}
+        style={{ maxWidth: 1200, width: '100%' }}
         className="mx-auto"
         onFinish={onFinish}
         form={form}
         disabled={isPending}
       >
-        <Tooltip title='Lượng calo nên từ 250 đến 810'>
+        <Tooltip title='Lượng sodium nên từ 556 đến 1936'>
           <Form.Item
-            name={[ 'user', 'calories' ]}
-            label="Số liệu về lượng calo"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng calo phải phù hợp' } ]}
+            name={[ 'user', 'sodium' ]}
+            label="Số liệu về lượng sodium"
+            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng sodium phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
           </Form.Item>
         </Tooltip>
 
-        <Tooltip title='Lượng đường nên từ 1 đến 14'>
+        <Tooltip title='Lượng cholesterol nên từ 9 đến 135'>
           <Form.Item
-            name={[ 'user', 'sugar' ]}
-            label="Số liệu về lượng đường"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng đường phải phù hợp' } ]}
+            name={[ 'user', 'cholesterol' ]}
+            label="Số liệu về lượng cholesterol"
+            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng cholesterol phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
           </Form.Item>
         </Tooltip>
 
-        <Tooltip title='Lượng carb nên từ 20 đến 70'>
+        <Tooltip title='Lượng total_fat nên từ 8 đến 45'>
           <Form.Item
-            name={[ 'user', 'total_carb' ]}
-            label="Số liệu về lượng carb"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng carb phải phù hợp' } ]}
+            name={[ 'user', 'total_fat' ]}
+            label="Số liệu về lượng total_fat"
+            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng total_fat phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
@@ -93,7 +93,7 @@ const FormWeight = ({ topicId, ref3 }) => {
         </Form.Item>
 
         <Form.Item label={null}>
-          <Space ref={ref3}>
+          <Space >
             <Button type="primary" htmlType="submit" loading={isPending}>
             Xác nhận
             </Button>
@@ -170,4 +170,4 @@ const FormWeight = ({ topicId, ref3 }) => {
   )
 }
 
-export default FormWeight
+export default FormSodium

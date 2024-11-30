@@ -2,6 +2,10 @@ import { FormOutlined, ScheduleOutlined, HeartOutlined, PlusCircleOutlined, Fall
 import { Button, Tabs, Tour } from 'antd'
 import FormWeight from './FormWeight'
 import { useRef, useState } from 'react'
+import FormHeart from './FormHeart'
+import FormProtein from './FormProtein'
+import FormSodium from './FormSodium'
+import FormSpecial from './FormSpecial'
 
 function TabComponent() {
   const ref1 = useRef(null)
@@ -18,25 +22,25 @@ function TabComponent() {
     {
       key: 2,
       label: 'Hỗ trợ sức khỏe tim mạch',
-      children: '2',
+      children: <FormHeart topicId={2} />,
       icon: <HeartOutlined />
     },
     {
       key: 3,
       label: 'Chế độ ăn giàu protein',
-      children: '2',
+      children: <FormProtein topicId={3} />,
       icon: <PlusCircleOutlined />
     },
     {
       key: 4,
       label: 'Hạn chế sodium (giảm muối)',
-      children: '2',
+      children: <FormSodium topicId={4} />,
       icon: <FallOutlined />
     },
     {
       key: 5,
       label: 'Chế độ ăn kiêng đặc biệt',
-      children: '2',
+      children: <FormSpecial topicId={5} />,
       icon: <ScheduleOutlined />
     }
   ]
