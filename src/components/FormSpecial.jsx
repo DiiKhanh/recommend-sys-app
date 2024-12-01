@@ -58,7 +58,7 @@ const FormSpecial = ({ topicId }) => {
           <Form.Item
             name={[ 'user', 'calories' ]}
             label="Số liệu về lượng calo"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng calo phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng calo phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
@@ -69,7 +69,7 @@ const FormSpecial = ({ topicId }) => {
           <Form.Item
             name={[ 'user', 'trans_fat' ]}
             label="Số liệu về lượng trans_fat"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng trans_fat phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng trans_fat phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
@@ -80,7 +80,7 @@ const FormSpecial = ({ topicId }) => {
           <Form.Item
             name={[ 'user', 'total_fat' ]}
             label="Số liệu về lượng total_fat"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng total_fat phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng total_fat phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
@@ -90,7 +90,7 @@ const FormSpecial = ({ topicId }) => {
           <Form.Item
             name={[ 'user', 'total_carb' ]}
             label="Số liệu về lượng total_carb"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng total_carb phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng total_carb phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />

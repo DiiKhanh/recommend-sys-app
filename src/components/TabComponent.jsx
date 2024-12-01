@@ -1,11 +1,22 @@
 import { FormOutlined, ScheduleOutlined, HeartOutlined, PlusCircleOutlined, FallOutlined } from '@ant-design/icons'
-import { Button, Tabs, Tour } from 'antd'
+import { Button, Collapse, Tabs, Tour } from 'antd'
 import FormWeight from './FormWeight'
 import { useRef, useState } from 'react'
 import FormHeart from './FormHeart'
 import FormProtein from './FormProtein'
 import FormSodium from './FormSodium'
 import FormSpecial from './FormSpecial'
+
+const text = `
+Xác định các thành phần: Trước tiên, hãy liệt kê đầy đủ các nguyên liệu chính được sử dụng trong món ăn (ví dụ: gạo, thịt, rau, dầu ăn).<br />
+Tra cứu giá trị dinh dưỡng: Tìm kiếm thông tin lượng kcal tương ứng cho mỗi nguyên liệu. Bạn có thể tra cứu trên nhãn sản phẩm, sách dinh dưỡng, hoặc các trang web uy tín.<br />
+Nhập số lượng nguyên liệu: Nhập khối lượng (gram/ml) của từng nguyên liệu vào ô tương ứng trong ứng dụng. Đảm bảo đơn vị đo chính xác để kết quả kcal được tính đúng.<br />
+Kiểm tra tổng kcal: Ứng dụng sẽ tự động tính toán và hiển thị tổng lượng kcal của món ăn dựa trên dữ liệu bạn cung cấp.<br />
+<b>Lưu ý:</b><br />
+Nếu món ăn có các thành phần chế biến (như nước sốt, gia vị), hãy ước tính và nhập lượng kcal của chúng.<br />
+Đối với các món ăn được mua sẵn, có thể nhập trực tiếp tổng kcal nếu thông tin đã được cung cấp trên bao bì.<br />
+Hãy nhập liệu cẩn thận để có thông tin dinh dưỡng chính xác và phục vụ tốt hơn cho chế độ ăn uống của bạn!<br />
+`
 
 function TabComponent() {
   const ref1 = useRef(null)
@@ -78,6 +89,11 @@ function TabComponent() {
         >
         Hướng dẫn
         </Button>
+      </div>
+      <div className='w-full flex justify-center my-1'>
+        <Collapse
+          items={[ { key: '1', label: 'Hướng dẫn nhập liệu lượng kcal dinh dưỡng của từng thành phần trong món ăn', children: <p dangerouslySetInnerHTML={{ __html: text }} /> } ]}
+        />
       </div>
       <Tabs
         activeKey={activeTab}

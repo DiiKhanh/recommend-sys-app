@@ -51,7 +51,7 @@ const FormWeight = ({ topicId, ref3 }) => {
           <Form.Item
             name={[ 'user', 'calories' ]}
             label="Số liệu về lượng calo"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng calo phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng calo phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
@@ -62,7 +62,7 @@ const FormWeight = ({ topicId, ref3 }) => {
           <Form.Item
             name={[ 'user', 'sugar' ]}
             label="Số liệu về lượng đường"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng đường phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng đường phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
@@ -73,7 +73,7 @@ const FormWeight = ({ topicId, ref3 }) => {
           <Form.Item
             name={[ 'user', 'total_carb' ]}
             label="Số liệu về lượng carb"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng carb phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng carb phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />

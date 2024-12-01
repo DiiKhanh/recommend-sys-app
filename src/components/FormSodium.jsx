@@ -57,7 +57,7 @@ const FormSodium = ({ topicId }) => {
           <Form.Item
             name={[ 'user', 'sodium' ]}
             label="Số liệu về lượng sodium"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng sodium phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng sodium phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
@@ -68,7 +68,7 @@ const FormSodium = ({ topicId }) => {
           <Form.Item
             name={[ 'user', 'cholesterol' ]}
             label="Số liệu về lượng cholesterol"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng cholesterol phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng cholesterol phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
@@ -79,7 +79,7 @@ const FormSodium = ({ topicId }) => {
           <Form.Item
             name={[ 'user', 'total_fat' ]}
             label="Số liệu về lượng total_fat"
-            rules={[ { type: 'number', min: 1, max: 10000, required: true, message: 'Lượng total_fat phải phù hợp' } ]}
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng total_fat phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
