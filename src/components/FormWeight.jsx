@@ -47,33 +47,33 @@ const FormWeight = ({ topicId, ref3 }) => {
         form={form}
         disabled={isPending}
       >
-        <Tooltip title='Lượng calo nên từ 250 đến 810'>
+        <Tooltip title='Lượng calories nên từ 250 (kcal) đến 810 (kcal)'>
           <Form.Item
             name={[ 'user', 'calories' ]}
-            label="Số liệu về lượng calo"
-            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng calo phải phù hợp' } ]}
+            label="Lượng calories (kcal)"
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng calories (kcal) phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
           </Form.Item>
         </Tooltip>
 
-        <Tooltip title='Lượng đường nên từ 1 đến 14'>
+        <Tooltip title='Lượng đường nên từ 1 (g) đến 14 (g)'>
           <Form.Item
             name={[ 'user', 'sugar' ]}
-            label="Số liệu về lượng đường"
-            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng đường phải phù hợp' } ]}
+            label="Lượng đường (g)"
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng đường (g) phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
           </Form.Item>
         </Tooltip>
 
-        <Tooltip title='Lượng tinh bột nên từ 20 đến 70'>
+        <Tooltip title='Lượng tinh bột nên từ 20 (g) đến 70 (g)'>
           <Form.Item
             name={[ 'user', 'total_carb' ]}
-            label="Số liệu về lượng tinh bột"
-            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng tinh bột phải phù hợp' } ]}
+            label="Lượng tinh bột (g)"
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng tinh bột (g) phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />

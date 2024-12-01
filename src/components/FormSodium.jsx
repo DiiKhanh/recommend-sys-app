@@ -47,33 +47,33 @@ const FormSodium = ({ topicId }) => {
         form={form}
         disabled={isPending}
       >
-        <Tooltip title='Lượng natri (muối) nên từ 556 đến 1936'>
+        <Tooltip title='Lượng natri (muối) nên từ 556 (mg) đến 1936 (mg)'>
           <Form.Item
             name={[ 'user', 'sodium' ]}
-            label="Số liệu về lượng natri (muối)"
-            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng natri (muối) phải phù hợp' } ]}
+            label="Lượng natri (muối) (mg)"
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng natri (muối) (mg) phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
           </Form.Item>
         </Tooltip>
 
-        <Tooltip title='Lượng cholesterol nên từ 9 đến 135'>
+        <Tooltip title='Lượng cholesterol nên từ 9 (mg) đến 135 (mg)'>
           <Form.Item
             name={[ 'user', 'cholesterol' ]}
-            label="Số liệu về lượng cholesterol"
-            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng cholesterol phải phù hợp' } ]}
+            label="Lượng cholesterol (mg)"
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng cholesterol (mg) phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
           </Form.Item>
         </Tooltip>
 
-        <Tooltip title='Lượng chất béo nên từ 8 đến 45'>
+        <Tooltip title='Lượng chất béo nên từ 8 (g) đến 45 (g)'>
           <Form.Item
             name={[ 'user', 'total_fat' ]}
-            label="Số liệu về lượng chất béo"
-            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng chất béo phải phù hợp' } ]}
+            label="Lượng chất béo (g)"
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng chất béo (g) phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />

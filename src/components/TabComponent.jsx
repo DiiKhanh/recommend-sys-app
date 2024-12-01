@@ -92,7 +92,7 @@ function TabComponent() {
       </div>
       <div className='w-full flex justify-center my-1'>
         <Collapse
-          items={[ { key: '1', label: 'Hướng dẫn nhập liệu lượng kcal dinh dưỡng của từng thành phần trong món ăn', children: <p dangerouslySetInnerHTML={{ __html: text }} /> } ]}
+          items={[ { key: '1', label: 'Hướng dẫn nhập liệu lượng dinh dưỡng của từng thành phần trong món ăn', children: <p dangerouslySetInnerHTML={{ __html: text }} /> } ]}
         />
       </div>
       <Tabs
