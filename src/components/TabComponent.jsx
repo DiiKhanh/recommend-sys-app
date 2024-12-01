@@ -46,6 +46,7 @@ function TabComponent() {
   ]
 
   const [ open, setOpen ] = useState(false)
+  const [ activeTab, setActiveTab ] = useState(1)
 
   const steps = [
     {
@@ -69,17 +70,19 @@ function TabComponent() {
     <div className='flex items-center justify-center flex-col'>
       <div className='text-[#1F509A] font-bold text-2xl py-5 flex items-center justify-center'>
         <h4>Chọn chủ đề muốn sử dụng</h4>
-        <Button type="primary" onClick={() => setOpen(true)}
-          className='ml-4'
+        <Button type="primary" onClick={() => {
+          setActiveTab(1)
+          setOpen(true)
+        }}
+        className='ml-4'
         >
         Hướng dẫn
         </Button>
       </div>
       <Tabs
-        defaultActiveKey={1}
-        items={items.map(i => {
-          return i
-        })}
+        activeKey={activeTab}
+        onChange={(key) => setActiveTab(key)}
+        items={items}
       />
       <Tour
         open={open}
