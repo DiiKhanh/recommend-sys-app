@@ -6,7 +6,7 @@ import {
   YoutubeOutlined
 } from '@ant-design/icons'
 import FoodStoreItem from './common/FoodStoreItem'
-import { usePostRecommendWeight } from '@/apis/manage-weight/manage-weight.query'
+import { usePostRecommendText, usePostRecommendWeight } from '@/apis/manage-weight/manage-weight.query'
 import Marquee from 'react-fast-marquee'
 import { useState } from 'react'
 import ModalContent from './common/ModalContent'
@@ -27,6 +27,7 @@ const FormProtein = ({ topicId }) => {
   const [ open, setOpen ] = useState(false)
   const [ form ] = Form.useForm()
   const { mutate, isPending, data } = usePostRecommendWeight()
+  const { mutate: viewText, data: text, isPending: loadingAI } = usePostRecommendText()
 
   const onFinish = (values) => {
     const data = {
@@ -39,6 +40,7 @@ const FormProtein = ({ topicId }) => {
       }
     }
     mutate(data)
+    viewText(data)
   }
 
   return (
@@ -156,7 +158,7 @@ const FormProtein = ({ topicId }) => {
           </div>
         </>
       }
-      <ModalContent open={open} setOpen={setOpen} data={data}/>
+      <ModalContent open={open} setOpen={setOpen} data={data} loading={loadingAI} text={text}/>
     </Flex>
   )
 }

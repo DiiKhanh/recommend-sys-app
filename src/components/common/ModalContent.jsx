@@ -1,7 +1,7 @@
 import { Modal } from 'antd'
 import TableComponent from './TableComponent'
 
-const ModalContent = ({ data, open, setOpen }) => {
+const ModalContent = ({ data, open, setOpen, loading, text }) => {
   return (
     <Modal
       title="Kết quả"
@@ -12,7 +12,7 @@ const ModalContent = ({ data, open, setOpen }) => {
       width="100%"
       onCancel={() => setOpen(false)}
     >
-      <TableComponent data={data?.recommendations} />
+      <TableComponent data={data?.recommendations} loading={loading} text={text}/>
     </Modal>
   )
 }
