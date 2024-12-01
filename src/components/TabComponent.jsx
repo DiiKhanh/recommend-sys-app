@@ -8,7 +8,7 @@ import FormSodium from './FormSodium'
 import FormSpecial from './FormSpecial'
 
 const text = `
-Xác định các thành phần: Trước tiên, hãy liệt kê đầy đủ các nguyên liệu chính được sử dụng trong món ăn (ví dụ: gạo, thịt, rau, dầu ăn).<br />
+Xác định các thành phần: Trước tiên, hãy liệt kê đầy đủ các nguyên liệu chính được sử dụng trong món ăn (ví dụ: thịt, rau, dầu ăn).<br />
 Tra cứu giá trị dinh dưỡng: Tìm kiếm thông tin lượng kcal tương ứng cho mỗi nguyên liệu. Bạn có thể tra cứu trên nhãn sản phẩm, sách dinh dưỡng, hoặc các trang web uy tín.<br />
 Nhập số lượng nguyên liệu: Nhập khối lượng (gram/ml) của từng nguyên liệu vào ô tương ứng trong ứng dụng. Đảm bảo đơn vị đo chính xác để kết quả kcal được tính đúng.<br />
 Kiểm tra tổng kcal: Ứng dụng sẽ tự động tính toán và hiển thị tổng lượng kcal của món ăn dựa trên dữ liệu bạn cung cấp.<br />

@@ -41,7 +41,7 @@ const FormWeight = ({ topicId, ref3 }) => {
     <Flex vertical>
       <Form
         {...formItemLayout}
-        style={{ maxWidth: 800, width: '100%' }}
+        style={{ maxWidth: 1200, width: '100%' }}
         className="mx-auto"
         onFinish={onFinish}
         form={form}
@@ -69,11 +69,11 @@ const FormWeight = ({ topicId, ref3 }) => {
           </Form.Item>
         </Tooltip>
 
-        <Tooltip title='Lượng carb nên từ 20 đến 70'>
+        <Tooltip title='Lượng tinh bột nên từ 20 đến 70'>
           <Form.Item
             name={[ 'user', 'total_carb' ]}
-            label="Số liệu về lượng carb"
-            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng carb phải phù hợp' } ]}
+            label="Số liệu về lượng tinh bột"
+            rules={[ { type: 'number', min: 0, max: 10000, required: true, message: 'Lượng tinh bột phải phù hợp' } ]}
             hasFeedback
           >
             <InputNumber className="w-full" />
