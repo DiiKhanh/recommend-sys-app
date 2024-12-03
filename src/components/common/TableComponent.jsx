@@ -165,7 +165,9 @@ const TableComponent= ({ data }) => {
             })
           }
           handleClickAI()
-        }} >
+        }}
+        loading={loadingAI}
+        >
           Trợ lý AI
         </Button>
       </div>
