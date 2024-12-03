@@ -1,8 +1,8 @@
-import { Alert, Modal, Tag } from 'antd'
+import { Alert, Modal, Result, Tag } from 'antd'
 import React from 'react'
 import Markdown from 'react-markdown'
 
-const ModalText = ({ openText, setOpenText, data, loading }) => {
+const ModalText = ({ openText, setOpenText, data, loading, isError }) => {
   return (
     <Modal
       title="Gợi ý từ chuyên gia AI FastFood-SYS"
@@ -14,11 +14,21 @@ const ModalText = ({ openText, setOpenText, data, loading }) => {
       onCancel={() => setOpenText(false)}
       loading={loading}
     >
-      <div className='flex items-center justify-center gap-4 my-4'>
-        <Alert message={data?.goal} />
-        <Tag color='magenta'>{data?.topic_name}</Tag>
-      </div>
-      <Markdown>{data?.recommendation_text}</Markdown>
+      {
+        isError ?
+          <Result
+            status="warning"
+            title="There are some problems. Please retry !"
+          />
+          :
+          <>
+            <div className='flex items-center justify-center gap-4 my-4'>
+              <Alert message={data?.goal} />
+              <Tag color='magenta'>{data?.topic_name}</Tag>
+            </div>
+            <Markdown>{data?.recommendation_text}</Markdown>
+          </>
+      }
     </Modal>
   )
 }

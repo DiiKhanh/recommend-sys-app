@@ -1,9 +1,10 @@
 import { Button, Flex, Form, InputNumber, Space, Tooltip } from 'antd'
 import FoodStoreItem from './common/FoodStoreItem'
-import { usePostRecommendText, usePostRecommendWeight } from '@/apis/manage-weight/manage-weight.query'
+import { usePostRecommendWeight } from '@/apis/manage-weight/manage-weight.query'
 import { useState } from 'react'
 import ModalContent from './common/ModalContent'
 import ContentFooter from './common/ContentFooter'
+import useValues from '@/hooks/useValues'
 
 const formItemLayout = {
   labelCol: {
@@ -21,7 +22,8 @@ const FormHeart = ({ topicId }) => {
   const [ open, setOpen ] = useState(false)
   const [ form ] = Form.useForm()
   const { mutate, isPending, data } = usePostRecommendWeight()
-  const { mutate: viewText, data: text, isPending: loadingAI } = usePostRecommendText()
+  const setValues = useValues((state) => state.setValues)
+
 
   const onFinish = (values) => {
     const data = {
@@ -35,7 +37,7 @@ const FormHeart = ({ topicId }) => {
       }
     }
     mutate(data)
-    viewText(data)
+    setValues(data)
   }
 
   return (
@@ -117,7 +119,7 @@ const FormHeart = ({ topicId }) => {
           <ContentFooter />
         </>
       }
-      <ModalContent open={open} setOpen={setOpen} data={data} loading={loadingAI} text={text}/>
+      <ModalContent open={open} setOpen={setOpen} data={data} />
     </Flex>
   )
 }

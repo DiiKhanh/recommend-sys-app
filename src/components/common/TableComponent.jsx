@@ -1,14 +1,18 @@
 import { FOOD_STORE, SAMPLE_DATA } from "@/constants/data"
-import { Button, Progress, Table, Tag } from 'antd'
+import { Button, notification, Progress, Table, Tag } from 'antd'
 import {
   MedicineBoxFilled
 } from '@ant-design/icons'
 import { useState } from "react"
 import ModalText from "./ModalText"
+import useValues from "@/hooks/useValues"
+import { usePostRecommendText } from "@/apis/manage-weight/manage-weight.query"
 
-const TableComponent= ({ data, text, loading }) => {
+const TableComponent= ({ data }) => {
   const dataSource = data || SAMPLE_DATA
   const [ open, setOpen ] = useState(false)
+  const values = useValues((state) => state.values)
+  const { mutate: viewText, data: textAI, isPending: loadingAI, isError } = usePostRecommendText()
 
   const columns = [
     {
@@ -49,62 +53,123 @@ const TableComponent= ({ data, text, loading }) => {
       title: "Thông tin dinh dưỡng",
       children: [
         {
-          title: "Calories",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Calories
+            </div>
+          ),
           dataIndex: [ "nutritional_info", "calories" ],
-          key: "calories"
+          key: "calories",
+          render: (value) => <p className="text-center">{value}</p>
         },
         {
-          title: "Cholesterol",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Cholesterol
+            </div>
+          ),
+          render: (value) => <p className="text-center">{value}</p>,
           dataIndex: [ "nutritional_info", "cholesterol" ],
           key: "cholesterol"
         },
         {
-          title: "Protein",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Protein
+            </div>
+          ),
+          render: (value) => <p className="text-center">{value}</p>,
           dataIndex: [ "nutritional_info", "protein" ],
           key: "protein"
         },
         {
-          title: "Saturated Fat",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Saturated Fat
+            </div>
+          ),
+          render: (value) => <p className="text-center">{value}</p>,
           dataIndex: [ "nutritional_info", "sat_fat" ],
           key: "sat_fat"
         },
         {
-          title: "Sodium",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Sodium
+            </div>
+          ),
+          render: (value) => <p className="text-center">{value}</p>,
           dataIndex: [ "nutritional_info", "sodium" ],
           key: "sodium"
         },
         {
-          title: "Sugar",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Sugar
+            </div>
+          ),
+          render: (value) => <p className="text-center">{value}</p>,
           dataIndex: [ "nutritional_info", "sugar" ],
           key: "sugar"
         },
         {
-          title: "Total Carb",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Total Carb
+            </div>
+          ),
+          render: (value) => <p className="text-center">{value}</p>,
           dataIndex: [ "nutritional_info", "total_carb" ],
           key: "total_carb"
         },
         {
-          title: "Total Fat",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Total Fat
+            </div>
+          ),
+          render: (value) => <p className="text-center">{value}</p>,
           dataIndex: [ "nutritional_info", "total_fat" ],
           key: "total_fat"
         },
         {
-          title: "Trans Fat",
+          title: () => (
+            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+              Trans Fat
+            </div>
+          ),
+          render: (value) => <p className="text-center">{value}</p>,
           dataIndex: [ "nutritional_info", "trans_fat" ],
           key: "trans_fat"
         }
       ]
     }
   ]
+
+  const handleClickAI = () => {
+    setOpen(true)
+    viewText(values)
+  }
+
   return (
     <>
-      <Table dataSource={dataSource} columns={columns} bordered pagination={dataSource.length > 5 ? { pageSize: 5 } : false}/>
+      <Table dataSource={dataSource} columns={columns} bordered pagination={dataSource.length > 5 ? { pageSize: 5 } : false}
+        rowKey='item'
+      />
       <div className="my-4 flex items-center justify-center">
-        <Button type="primary" icon={<MedicineBoxFilled />} onClick={() => setOpen(true)} >
+        <Button type="primary" icon={<MedicineBoxFilled />} onClick={() => {
+          if (!values) {
+            notification.error({
+              message: 'Vui lòng thử lại',
+              duration: 5
+            })
+          }
+          handleClickAI()
+        }} >
           Trợ lý AI
         </Button>
       </div>
-      <ModalText data={text} openText={open} setOpenText={setOpen} loading={loading}/>
+      <ModalText data={textAI} openText={open} setOpenText={setOpen} loading={loadingAI} isError={isError}/>
     </>
   )
 }
